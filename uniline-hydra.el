@@ -190,12 +190,12 @@
         "Text dir────"
         "Text dir─╴%s(uniline-text-direction-str)╶"
         "\
-╭^─^─^Insert glyph^^^^^─^─^───╮╭^^self╮╭^Rotate arrow^╮╭^Contour^╮╭^Text dir───^╮╭^─^───────╮         
-│_a_,_A_rrow ▷ ▶ → ▹ ▸ ↔^^^^^^││_-_ - │╭^Tweak glyph─^╮│_c_ draw ││_C-<left>_  ←││_*_ custom│         
-│_s_,_S_quare  □ ■ ◆ ◊  ^^^^^^││_+_ + ││_S-<left>_  ← ││_C_ ovwrt││_C-<right>_ →││_f_   font│         
-│_o_,_O_-shape · ● ◦ Ø ø^^^^^^││_=_ = ││_S-<right>_ → │╭^─Fill──^╮│_C-<up>_    ↑││_?_   info│         
-│_x_,_X_-cross ╳ ÷ × ± ¤^^^^^^││_#_ # ││_S-<up>_    ↑ ││_i_ fill ││_C-<down>_  ↓││_q_   exit│         
-│_SPC_,_DEL_ grey  ░▒▓█ ^^^^^^││_~_ ~ ││_S-<down>_  ↓ │╰^───────^╯╰^─^──────────╯╰^─^───────╯         
+╭^─^─^Insert glyph^^^^^─^─^───╮╭^^self╮╭^Rotate arrow^╮╭^Contour^╮╭^Text dir───^╮╭^─^───────╮
+│_a_,_A_rrow ▷ ▶ → ▹ ▸ ↔^^^^^^││_-_ - │╭^Tweak glyph─^╮│_c_ draw ││_C-<left>_  ←││_*_ custom│
+│_s_,_S_quare  □ ■ ◆ ◊  ^^^^^^││_+_ + ││_S-<left>_  ← ││_C_ ovwrt││_C-<right>_ →││_f_   font│
+│_o_,_O_-shape · ● ◦ Ø ø^^^^^^││_=_ = ││_S-<right>_ → │╭^─Fill──^╮│_C-<up>_    ↑││_?_   info│
+│_x_,_X_-cross ╳ ÷ × ± ¤^^^^^^││_#_ # ││_S-<up>_    ↑ ││_i_ fill ││_C-<down>_  ↓││_q_   exit│
+│_SPC_,_DEL_ grey  ░▒▓█ ^^^^^^││_~_ ~ ││_S-<down>_  ↓ │╰^───────^╯╰^─^──────────╯╰^─^───────╯
 ╰^─^─^─^─^─^─^─^─^─^──────────╯╰^^────╯╰^────────────^╯"))
       ("a" uniline-insert-fw-arrow )
       ("A" uniline-insert-bw-arrow )
@@ -241,12 +241,12 @@
         "Text dir────"
         "Text dir─╴%s(uniline-text-direction-str)╶"
             "\
-╭^─^─^Insert glyph^^^^^─^─^───╮╭^^brush───────^^───╮╭^Rotate arrow^╮╭^Contour^╮╭^Text dir───^╮╭^─^───────╮       
-│_a_,_A_rrow ▷ ▶ → ▹ ▸ ↔^^^^^^││_-_ light  _+_ bold│╭^Tweak glyph─^╮│_c_ draw ││_C-<left>_  ←││_*_ custom│       
-│_s_,_S_quare  □ ■ ◆ ◊  ^^^^^^││_=_ double _#_ quad││_S-<left>_  ← ││_C_ ovwrt││_C-<right>_ →││_f_   font│       
-│_o_,_O_-shape · ● ◦ Ø ø^^^^^^││_~_ dotted       ^^││_S-<right>_ → │╭^─Fill──^╮│_C-<up>_    ↑││_?_   info│       
-│_x_,_X_-cross ╳ ÷ × ± ¤^^^^^^││_<return>_ none  ^^││_S-<up>_    ↑ ││_i_ fill ││_C-<down>_  ↓││_q_   exit│       
-│_SPC_,_DEL_ grey  ░▒▓█ ^^^^^^││_<delete>_ erase ^^││_S-<down>_  ↓ │╰^───────^╯╰^─^──────────╯╰^─^───────╯       
+╭^─^─^Insert glyph^^^^^─^─^───╮╭^^brush───────^^───╮╭^Rotate arrow^╮╭^Contour^╮╭^Text dir───^╮╭^─^───────╮
+│_a_,_A_rrow ▷ ▶ → ▹ ▸ ↔^^^^^^││_-_ light  _+_ bold│╭^Tweak glyph─^╮│_c_ draw ││_C-<left>_  ←││_*_ custom│
+│_s_,_S_quare  □ ■ ◆ ◊  ^^^^^^││_=_ double _#_ quad││_S-<left>_  ← ││_C_ ovwrt││_C-<right>_ →││_f_   font│
+│_o_,_O_-shape · ● ◦ Ø ø^^^^^^││_~_ dotted       ^^││_S-<right>_ → │╭^─Fill──^╮│_C-<up>_    ↑││_?_   info│
+│_x_,_X_-cross ╳ ÷ × ± ¤^^^^^^││_<return>_ none  ^^││_S-<up>_    ↑ ││_i_ fill ││_C-<down>_  ↓││_q_   exit│
+│_SPC_,_DEL_ grey  ░▒▓█ ^^^^^^││_<delete>_ erase ^^││_S-<down>_  ↓ │╰^───────^╯╰^─^──────────╯╰^─^───────╯
 ╰^─^─^─^─^─^─^─^─^─^──────────╯╰^^───────────^^────╯╰^────────────^╯"))
       ("a" uniline-insert-fw-arrow )
       ("A" uniline-insert-bw-arrow )
@@ -284,7 +284,7 @@
       ("TAB" uniline-toggle-hints)
       ("*" uniline-hydra-customize/body :exit t)
       ("?"  (info "uniline") :exit t)
-      ("q"   ()              :exit t))    
+      ("q"   ()              :exit t))
 
     (defhydra uniline-hydra-alt-styles
       (:pre (rectangle-mark-mode 1) :hint nil :exit nil)
@@ -334,17 +334,16 @@
       (:pre (rectangle-mark-mode 1) :hint nil :exit nil)
       ;; Docstring MUST begin with an empty line to benefit from substitutions
       "
-╭^Move ^rect╮╭────^Draw^ rect────╮╭^─Rect^─╮╭^Brush^╮╭──^Misc^─────────╮
-│_<right>_ →││_r_     trace inner││_c_ copy││_-_ ╭─╯││_s_   alt styles │
-│_<left>_  ←││_R_     trace outer││_k_ kill││_+_ ┏━┛││_f_   choose font│
-│_<up>_    ↑││_C-r_   ovewr inner││_y_ yank││_=_ ╔═╝││_C-t_ short hints│
-│_<down>_  ↓││_C-S-R_ ovewr outer│╰^^──────╯│_#_ ▄▄▟││_?_   info       │
-╰^─────^────╯│_i_     fill       │ ^^╭──────╯_~_ ┄┄┄││_<return>_ exit  │
- ^     ^     ╰^────^─────────────╯ ^^│_<delete>_ DEL│╰^───^────────────╯
- ^     ^      ^    ^               ^^╰^────────^────╯"
+╭^Move ^rect╮╭────^Draw^ rect────╮╭^─Rect^─╮╭^─^──Brush^^────╮╭──^Misc^─────────╮
+│_<right>_ →││_r_     trace inner││_c_ copy││_-_ ╭─╯  _+_ ┏━┛││_s_   alt styles │
+│_<left>_  ←││_R_     trace outer││_k_ kill││_=_ ╔═╝  _#_ ▄▄▟││_f_   choose font│
+│_<up>_    ↑││_C-r_   ovewr inner││_y_ yank││_~_ ┄┄┄  ^ ^    ││_C-t_ short hints│
+│_<down>_  ↓││_C-S-R_ ovewr outer││_i_ fill││_<delete>_ DEL^^││_?_   info       │
+╰^─────^────╯╰^────^─────────────╯╰^^──────╯╰^^─────────^^───╯│_<return>_ exit  │
+ ^     ^      ^    ^               ^^        ^^         ^^    ╰^───^────────────╯"
       ("<right>" uniline-move-rect-ri→)
       ("<left>"  uniline-move-rect-lf←)
-      ("<up>"    uniline-move-rect-up↑)
+      ("<up>"    uniline-move-rect-up↑)                                
       ("<down>"  uniline-move-rect-dw↓)
 
       ("r"     uniline-draw-inner-rectangle)

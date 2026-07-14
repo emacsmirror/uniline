@@ -4409,7 +4409,7 @@ And backup previous settings."
 │ \\`<insert> ~'         to switch between dotted and plain lines
 │ \\`<insert> <delete>'  to erase lines
 │ \\`<insert> <return>'  to move cursor without drawing
-│ depending on the value of `uniline-prefix-for-setting-brush',
+│ Depending on the value of `uniline-prefix-for-setting-brush',
 │ the \\`<insert>' prefix can be avoided.
 ╰─────────────────────────────────────────────────╴
  ╭──────────────────────────╮
@@ -4425,6 +4425,7 @@ And backup previous settings."
 │ \\`<insert> o' or \\`<insert> O' circles  · ● ◦ Ø ø
 │ \\`<insert> x' or \\`<insert> X' crosses  ╳ ╱ ╲ ÷ × ± ¤
 │ Shifting the key cycles backward
+│ \\`<insert> SPC' or \\`<insert> DEL' shades of grey  ░▒▓█
 │
 ├──Arrow direction────────────────────────────────╴
 │ When an arrow ▷ ▶ → ▹ ▸ ↔ is under point:
@@ -4455,8 +4456,10 @@ And backup previous settings."
 │
 ├──Other──────────────────────────────────────────╴
 │ \\`<insert> f' enter the fonts sub-menu.
-│ \\`q' exits the sub-mode.
-│ Any other key exits the sub-mode and do whatever they
+│ \\`<insert> *' enter the customization sub-menu.
+│ \\`<insert> ?' launch the info-mode documentation.
+│ \\`q' exits the sub-menu.
+│ Any other key exits the sub-menu and do whatever they
 │ are intended for.
 ╰─────────────────────────────────────────────────╴
  ╭────────────────────────────╮
@@ -4482,11 +4485,28 @@ And backup previous settings."
 │ \\`<insert> k'     kill rectangle
 │ \\`<insert> y'     yank rectangle
 │
-├─Other───────────────────────────────────────────╴
-│ \\`<insert> i'     fill rectangle with a character
-│ \\`q' exit the rectangle sub-mode
+├─Fill────────────────────────────────────────────╴
+│ \\`<insert> i' fill rectangle with a character
+│ \\`SPC' and \\`DEL' fill with shades of grey  ░▒▓█.
+│ \\`C-y' fills with the first character at the top of the kill ring.
 │ Any other key exits the sub-mode and do whatever they
 │ are intended for.
+╰─────────────────────────────────────────────────╴
+  ╭────────────────────╮
+╭─╯ Long range actions ╰──────────────────────────╴
+│ No region should be selected.
+│ Put the cursor where the long range action should start.
+│
+├─Contour─────────────────────────────────────────╴
+│ \\`<insert> c' traces the contour of a shape. The shape is a
+│ contiguous region surrounded by blank characters. This command
+│ traces the frontier of the region, using the current brush.
+│
+├─Flood fill──────────────────────────────────────╴
+│ \\`<insert> i' fills a region made of contiguous identical
+│ characters. Type the expected filling character.
+│ \\`SPC' and \\`DEL' fill with shades of grey  ░▒▓█.
+│ \\`C-y' fills with the first character at the top of the kill ring.
 ╰─────────────────────────────────────────────────╴
  ╭──────╮
 ╭╯ Undo ╰─────────────────────────────────────────╴
@@ -4513,8 +4533,8 @@ And backup previous settings."
 ╰─────────────────────────────────────────────────╴
  ╭────────╮
 ╭╯ Macros ╰───────────────────────────────────────╴
-│ Usual Emacs macros recording works as usual.
-│ Last keyboard macro can be twisted in any of the 4 directions
+│ Usual Emacs macros recording work as usual.
+│ Last keyboard macro can be twisted in any of the 4 directions.
 │ \\`C-x e' then \\`→' \\`←' \\`↑' \\`↓': directional call of last keyboard macro.
 ╰─────────────────────────────────────────────────╴
  ╭───────╮
@@ -4529,8 +4549,9 @@ And backup previous settings."
  ╭───────────────╮
 ╭╯ Customization ╰────────────────────────────────╴
 │ Type \\`<insert> *' to enter the customization menu.
-│ There are session-only customizations (forgotten after you exit Emacs)
-│ and future-sessions ones.
+│ There are:
+│ - session-only customizations (forgotten after you exit Emacs),
+│ - and future-sessions ones.
 │
 ├─Toggle hint sizes───────────────────────────────╴
 │ Change the height of Hydra & Transient menus,
@@ -4545,10 +4566,10 @@ And backup previous settings."
 ╰─────────────────────────────────────────────────╴
  ╭───────────────╮
 ╭╯ Documentation ╰────────────────────────────────╴
-│ type `(info \"uniline\")'
-│ visit `https://github.com/tbanel/uniline'
-│ install and upgrade from `https://melpa.org'
-│ license Gnu Public License version 3
+│ Type `(info \"uniline\")'
+│ Visit `https://github.com/tbanel/uniline'
+│ Install and upgrade from `https://melpa.org'
+│ License: Gnu Public License version 3
 ╰─────────────────────────────────────────────────╴"
   :init-value nil
   ;;         ╭───╴without that, mouse-1 on mode-line does not display the menu

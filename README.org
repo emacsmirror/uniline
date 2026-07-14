@@ -296,6 +296,10 @@ Draw diagrams like those:
 
 #+end_example
 
+By the way, if you want to understand this mysterious equation, listen
+to the excellent Mahesh Shenoy explaining on his channel how to
+rebuild it from scratch: https://www.youtube.com/watch?v=3QU-_PSbKlo
+
 ** Explain the structure of a sentence in a foreign language
 :PROPERTIES:
 :CUSTOM_ID: explain-the-structure-of-a-sentence-in-a-foreign-language
@@ -609,9 +613,10 @@ Set the current brush with:
 - ~<return>~ move without drawing anything
 
 If the customizable variable =uniline-prefix-for-setting-brush= is
-non-nil, then those keys must be prefixed by =INS= to change the
-brush. Otherwise, they keep the meaning they had before entering
-uniline-mode (usually self insertion).
+non-nil, then those keys must be prefixed by =INS= to change the brush
+(the =INS= key is customizable, see [[#insert-key][Insert key]]). Otherwise, they keep
+the meaning they had before entering uniline-mode (usually self
+insertion).
 
 The current brush and the current text direction (see [[#text-direction][Text direction]]) are
 reflected in the mode-line (at the bottom of the =Emacs= screen). It
@@ -675,6 +680,8 @@ selected under =Uniline=. Just type any of:
   - =<insert> C-<down>=
   - =<insert> C-<left>=
 
+(Note: the =<insert>= key is customizable, see [[#insert-key][Insert key]]).
+
 The current direction is reflected in the mode-line, just before the
 word ="uniline"=.
 
@@ -697,13 +704,23 @@ Why =<insert>=? Because:
 
 So preempting =<insert>= does not sacrifice anything.
 
-*Customization*
+No =<insert>= key on the *MacOs keyborad*? Your =<insert>= is *already used
+for something else*?
 
-Another key may be defined instead of =<insert>=. Type:
+No problem! Through customization, another key may be defined instead
+of =<insert>=. Type:
 
 #+begin_example
 M-x customize-variable uniline-key-insert
 #+end_example
+
+Actually, there is no obvious replacement for the =<insert>= key on
+MacOS. Therefore, no default is provided.
+
+See here https://convivialcomputing.net/posts/2026-07-03-uniline.html
+how a new user of Uniline handled the missing =<insert>= key on her-his
+MacOs. Hopefully Uniline became more Mac friendly than a few months ago
+and will further improve.
 
 * Glyphs =▷ ▶ → □ ◆ ╮─= insertion & modification
 :PROPERTIES:
@@ -752,6 +769,8 @@ cycles through the 6 styles, =A= cycles backward).
 =<insert> A A A=. Those 3 shortcuts insert an arrow of this style: =▵▹▿◃=. The
 actual direction where the arrow points follows the last movement of
 the cursor.
+
+(The =<insert>= key may be customized, see [[#insert-key][Insert key]]).
 
 To change the direction of the arrow, use shift-arrow, for example:
 =S-<up>= will change from =→= to =↑=.
@@ -833,6 +852,8 @@ alone. We also modified a quarter-block line in a non-obvious way.
 
 - Put the point (the cursor) on the character where lines cross each other.
 - type =INS S-<right> S-<right>=
+
+(The =INS= key may be customized, see [[#insert-key][Insert key]]).
 
 =<right>= here refers to the right part of the character under the
 point. The 1/4 line segment will cycle through all displayable
@@ -1005,7 +1026,8 @@ it in two parts.
 
 A rectangle can be copied or killed, then yanked somewhere else.
 
-Select a region, press =<insert>=, then:
+Select a region, press =<insert>= (this key may be customized, see
+[[#insert-key][Insert key]]), then:
 - =c= to copy
 - =k= to kill
 - =y= to yank (aka paste)
@@ -1063,18 +1085,18 @@ be made either thin or thick.
 - Type =INS=, then =s= (as "style").
 
 You will be offered a choice of styles:
-- =3=: vertical lines will become 3 dashes per character, while
++ =3=: vertical lines will become 3 dashes per character, while
   horizontal ones will get 2 dashes per character.
-- =4=: vertical and horizontal lines will get 4 dashes per character.
-- =h=: thin lines corners, which are usually rounded, become hard angles.
-- =+=: thin lines and intersections become thick, empty glyphs get
-  filled.
-- =-=: thick lines and intersections become thin, filled glyphs are
-  emptied.
-- ~=~: thick and thin lines become double lines.
-- =0=: come back to standard base-line =Uniline= style: plain, not-dashed
++ =4=: vertical and horizontal lines will get 4 dashes per character.
++ =h=: thin lines corners, which are usually rounded, become hard angles.
++ =+=: thin lines and intersections become thick, empty glyphs get
+  filled. For instance, the empty square □ gets filled ■.
++ =-=: thick lines and intersections become thin, filled glyphs are
+  emptied. For instance, the filled arrow ▶ becomes empty ▷.
++ ~=~: thick and thin lines become double lines.
++ =0=: come back to standard base-line =Uniline= style: plain, not-dashed
   lines, thin corner rounded, ASCII art is converted to UNICODE.
-- =a=: apply the =aa2u-rectangle= function from the unrelated
++ =a=: apply the =aa2u-rectangle= function from the unrelated
   =ascii-art-to-unicode= package, to convert ASCII art to UNICODE (this
   only works if =ascii-art-to-unicode= is already installed).
 
@@ -1224,6 +1246,8 @@ the cursor anywhere on the shape or outside but touching it. Then
 type:
 
 =<insert> c=
+
+(The =<insert>= key is customizable, see [[#insert-key][Insert key]]).
 
 A contour line is traced (or erased if brush style is =<delete>=)
 around the contiguous shape close to the cursor.
@@ -2276,7 +2300,8 @@ ASCIIFlow:
 Could =Uniline= be programmed (versus used interactively)?
 Yes!
 
-The API is usable programmatically.
+The API is usable programmatically. The Uniline functions work even
+when the buffer is not in =uniline-mode=.
 
 ** Move the cursor
 :PROPERTIES:
