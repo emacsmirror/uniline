@@ -343,7 +343,7 @@
  ^     ^      ^    ^               ^^        ^^         ^^    ╰^───^────────────╯"
       ("<right>" uniline-move-rect-ri→)
       ("<left>"  uniline-move-rect-lf←)
-      ("<up>"    uniline-move-rect-up↑)                                
+      ("<up>"    uniline-move-rect-up↑)
       ("<down>"  uniline-move-rect-dw↓)
 
       ("r"     uniline-draw-inner-rectangle)

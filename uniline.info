@@ -356,6 +356,10 @@ File: uniline.info,  Node: Outline the General Relativity and the Schrödinger's
        ╰──────────────────────────╴Imaginary number i²=-1
 
 
+   By the way, if you want to understand this mysterious equation,
+listen to the excellent Mahesh Shenoy explaining on his channel how to
+rebuild it from scratch: <https://www.youtube.com/watch?v=3QU-_PSbKlo>
+
 
 File: uniline.info,  Node: Explain the structure of a sentence in a foreign language,  Next: Draw electronic diagrams,  Prev: Outline the General Relativity and the Schrödinger's equations,  Up: Gallery pure UNICODE diagrams in Emacs
 
@@ -672,9 +676,10 @@ Set the current brush with:
    • ‘<return>’ move without drawing anything
 
    If the customizable variable ‘uniline-prefix-for-setting-brush’ is
-non-nil, then those keys must be prefixed by ‘INS’ to change the brush.
-Otherwise, they keep the meaning they had before entering uniline-mode
-(usually self insertion).
+non-nil, then those keys must be prefixed by ‘INS’ to change the brush
+(the ‘INS’ key is customizable, see *note Insert key::).  Otherwise,
+they keep the meaning they had before entering uniline-mode (usually
+self insertion).
 
    The current brush and the current text direction (see *note Text
 direction::) are reflected in the mode-line (at the bottom of the
@@ -736,6 +741,8 @@ selected under ‘Uniline’.  Just type any of:
    • ‘<insert> C-<down>’
    • ‘<insert> C-<left>’
 
+   (Note: the ‘<insert>’ key is customizable, see *note Insert key::).
+
    The current direction is reflected in the mode-line, just before the
 word ‘"uniline"’.
 
@@ -760,11 +767,22 @@ The ‘<insert>’ key is a prefix for other keys:
 
    So preempting ‘<insert>’ does not sacrifice anything.
 
-   *Customization*
+   No ‘<insert>’ key on the *MacOs keyborad*?  Your ‘<insert>’ is
+*already used for something else*?
 
-   Another key may be defined instead of ‘<insert>’.  Type:
+   No problem!  Through customization, another key may be defined
+instead of ‘<insert>’.  Type:
 
      M-x customize-variable uniline-key-insert
+
+   Actually, there is no obvious replacement for the ‘<insert>’ key on
+MacOS.  Therefore, no default is provided.
+
+   See here
+<https://convivialcomputing.net/posts/2026-07-03-uniline.html> how a new
+user of Uniline handled the missing ‘<insert>’ key on her-his MacOs.
+Hopefully Uniline became more Mac friendly than a few months ago and
+will further improve.
 
 
 File: uniline.info,  Node: Glyphs ▷ ▶ → □ ◆ ╮─ insertion & modification,  Next: Rectangular actions,  Prev: The <insert> key,  Up: Top
@@ -821,6 +839,8 @@ a a a’.  (‘a’ cycles through the 6 styles, ‘A’ cycles backward).
 equivalent to ‘<insert> A A A’.  Those 3 shortcuts insert an arrow of
 this style: ‘▵▹▿◃’.  The actual direction where the arrow points follows
 the last movement of the cursor.
+
+   (The ‘<insert>’ key may be customized, see *note Insert key::).
 
    To change the direction of the arrow, use shift-arrow, for example:
 ‘S-<up>’ will change from ‘→’ to ‘↑’.
@@ -902,6 +922,8 @@ alone.  We also modified a quarter-block line in a non-obvious way.
    • Put the point (the cursor) on the character where lines cross each
      other.
    • type ‘INS S-<right> S-<right>’
+
+   (The ‘INS’ key may be customized, see *note Insert key::).
 
    ‘<right>’ here refers to the right part of the character under the
 point.  The 1/4 line segment will cycle through all displayable forms.
@@ -1085,7 +1107,8 @@ File: uniline.info,  Node: Copying killing yanking a rectangular region,  Next: 
 
 A rectangle can be copied or killed, then yanked somewhere else.
 
-   Select a region, press ‘<insert>’, then:
+   Select a region, press ‘<insert>’ (this key may be customized, see
+*note Insert key::), then:
    • ‘c’ to copy
    • ‘k’ to kill
    • ‘y’ to yank (aka paste)
@@ -1149,9 +1172,9 @@ be made either thin or thick.
    • ‘h’: thin lines corners, which are usually rounded, become hard
      angles.
    • ‘+’: thin lines and intersections become thick, empty glyphs get
-     filled.
+     filled.  For instance, the empty square □ gets filled ■.
    • ‘-’: thick lines and intersections become thin, filled glyphs are
-     emptied.
+     emptied.  For instance, the filled arrow ▶ becomes empty ▷.
    • ‘=’: thick and thin lines become double lines.
    • ‘0’: come back to standard base-line ‘Uniline’ style: plain,
      not-dashed lines, thin corner rounded, ASCII art is converted to
@@ -1309,6 +1332,8 @@ Put the cursor anywhere on the shape or outside but touching it.  Then
 type:
 
    ‘<insert> c’
+
+   (The ‘<insert>’ key is customizable, see *note Insert key::).
 
    A contour line is traced (or erased if brush style is ‘<delete>’)
 around the contiguous shape close to the cursor.
@@ -2399,6 +2424,19 @@ file:
 Sometimes it is bound to ‘M-n’, but not always.  See *note Keyboard
 bindings:: for how to bind tilde ‘~’ and other keys.
 
+   The default monospaced font on MacOS used to be ‘Menlo’.  It was
+superseded by ‘SF-Mono’.  Uniline cannot support those fonts, as their
+licensing is quite restrictive (‘SF-Mono’ much more than ‘Menlo’).
+
+   You may still use them on your own.  Just customize the
+‘default-face’ or type something like:
+
+     (set-frame-font "Menlo")
+
+   ‘Menlo’ supports the Unicode characters used by Uniline.  Although
+the blocks-characters appear disconnected from one another, even with
+‘line-spacing’ set to ‘nil’.
+
 
 File: uniline.info,  Node: Compatibility with ASCIIFlow,  Prev: Emacs on MacOS,  Up: How Uniline behaves with its environment?
 
@@ -2432,7 +2470,8 @@ File: uniline.info,  Node: Lisp API,  Next: Installation,  Prev: How Uniline beh
 
 Could ‘Uniline’ be programmed (versus used interactively)?  Yes!
 
-   The API is usable programmatically.
+   The API is usable programmatically.  The Uniline functions work even
+when the buffer is not in ‘uniline-mode’.
 
 * Menu:
 
@@ -3077,93 +3116,93 @@ Node: Connect boxes with arrows5734
 Node: Explain decisions trees7054
 Node: Draw lines or blocks8560
 Node: Outline the General Relativity and the Schrödinger's equations10102
-Node: Explain the structure of a sentence in a foreign language12791
-Node: Draw electronic diagrams14377
-Node: Explain Lisp lists15782
-Node: Draw sketched objects16965
-Node: Replace words with simple sketches18955
-Node: Visualize floating point layouts19538
-Node: Illustrate proportions21557
-Node: Pure text23033
-Node: Beware!23768
-Node: A minor mode for drawing24351
-Node: Minor mode24663
-Node: Draw lines by moving the cursor25225
-Node: Infinite ∞ buffer25817
-Node: Brush style27098
-Node: Text direction29931
-Node: The <insert> key30481
-Node: Glyphs ▷ ▶ → □ ◆ ╮─ insertion & modification31481
-Node: Arrows glyphs ▷ ▶ → ▹ ▸ ↔32198
-Node: Intersection glyphs ■ ◆ ●33770
-Node: Fine tweaking of lines36600
-Node: Rectangular actions38483
-Node: Drawing a rectangle39854
-Node: Filling a rectangle41505
-Node: Moving a rectangular region42273
-Node: Copying killing yanking a rectangular region44842
-Node: Dashed lines and other styles46037
-Node: ASCII to UNICODE50162
-Node: UNICODE to ASCII53870
-Node: Long range actions contour and flood-fill54368
-Node: Tracing a contour54631
-Node: Flood-fill56545
-Node: Macros58319
-Node: Which fonts?61710
-Node: Recommended fonts61973
-Node: Use case - mixing fonts64065
-Node: Hydra or Transient?66066
-Node: Selecting Hydra or Transient67055
-Node: Instantly selecting Hydra or Transient68173
-Node: One-liner menus69139
-Node: The Hydra interface71077
-Node: The Transient interface71750
-Node: Customization72288
-Node: Interface type73228
-Node: Insert key73754
-Node: Prefix brush settings with INS74530
-Node: Keyboard bindings75203
-Node: Maximum steps when drawing a contour77143
-Node: Cursor type77480
-Node: Hint style77805
-Node: Welcome message visibility78152
-Node: Line spacing78533
-Node: Font79999
-Node: Upward infiniteness ∞80517
-Node: Lisp Hooks81068
-Node: How Uniline behaves with its environment?82369
-Node: Language environment83005
-Node: Mouse support85392
-Node: Compatibility with Picture-mode86349
-Node: Compatibility with Artist-mode87289
-Node: Compatibility with Whitespace-mode87808
-Node: Compatibility with Org Mode88708
-Node: Org Mode and LaTex90129
-Node: What about \t tabs?91989
-Node: What about ^L page separation?92790
-Node: Emacs on the Linux console93413
-Node: Emacs on a graphical terminal emulator94375
-Node: Emacs on Windows95305
-Node: Emacs on MacOS95972
-Node: Compatibility with ASCIIFlow97035
-Node: Lisp API97989
-Node: Move the cursor98538
-Node: Brush98969
-Node: Example Lisp function to draw a plus sign99838
-Node: Long range actions (contour flood-fill rectangle)101674
-Node: Constants102790
-Node: Macro and text direction103205
-Node: Insert and tweak glyphs104140
-Node: Change to alternate styles105253
-Node: Installation106162
-Node: use-package the straightforward way106418
-Node: Without use-package108803
-Node: Autoloading?110385
-Node: Related packages111270
-Node: Emacs111451
-Node: Non Emacs114813
-Node: Author contributors116725
-Node: License118836
+Node: Explain the structure of a sentence in a foreign language13001
+Node: Draw electronic diagrams14587
+Node: Explain Lisp lists15992
+Node: Draw sketched objects17175
+Node: Replace words with simple sketches19165
+Node: Visualize floating point layouts19748
+Node: Illustrate proportions21767
+Node: Pure text23243
+Node: Beware!23978
+Node: A minor mode for drawing24561
+Node: Minor mode24873
+Node: Draw lines by moving the cursor25435
+Node: Infinite ∞ buffer26027
+Node: Brush style27308
+Node: Text direction30202
+Node: The <insert> key30828
+Node: Glyphs ▷ ▶ → □ ◆ ╮─ insertion & modification32323
+Node: Arrows glyphs ▷ ▶ → ▹ ▸ ↔33040
+Node: Intersection glyphs ■ ◆ ●34684
+Node: Fine tweaking of lines37514
+Node: Rectangular actions39464
+Node: Drawing a rectangle40835
+Node: Filling a rectangle42486
+Node: Moving a rectangular region43254
+Node: Copying killing yanking a rectangular region45823
+Node: Dashed lines and other styles47071
+Node: ASCII to UNICODE51304
+Node: UNICODE to ASCII55012
+Node: Long range actions contour and flood-fill55510
+Node: Tracing a contour55773
+Node: Flood-fill57757
+Node: Macros59531
+Node: Which fonts?62922
+Node: Recommended fonts63185
+Node: Use case - mixing fonts65277
+Node: Hydra or Transient?67278
+Node: Selecting Hydra or Transient68267
+Node: Instantly selecting Hydra or Transient69385
+Node: One-liner menus70351
+Node: The Hydra interface72289
+Node: The Transient interface72962
+Node: Customization73500
+Node: Interface type74440
+Node: Insert key74966
+Node: Prefix brush settings with INS75742
+Node: Keyboard bindings76415
+Node: Maximum steps when drawing a contour78355
+Node: Cursor type78692
+Node: Hint style79017
+Node: Welcome message visibility79364
+Node: Line spacing79745
+Node: Font81211
+Node: Upward infiniteness ∞81729
+Node: Lisp Hooks82280
+Node: How Uniline behaves with its environment?83581
+Node: Language environment84217
+Node: Mouse support86604
+Node: Compatibility with Picture-mode87561
+Node: Compatibility with Artist-mode88501
+Node: Compatibility with Whitespace-mode89020
+Node: Compatibility with Org Mode89920
+Node: Org Mode and LaTex91341
+Node: What about \t tabs?93201
+Node: What about ^L page separation?94002
+Node: Emacs on the Linux console94625
+Node: Emacs on a graphical terminal emulator95587
+Node: Emacs on Windows96517
+Node: Emacs on MacOS97184
+Node: Compatibility with ASCIIFlow98786
+Node: Lisp API99740
+Node: Move the cursor100368
+Node: Brush100799
+Node: Example Lisp function to draw a plus sign101668
+Node: Long range actions (contour flood-fill rectangle)103504
+Node: Constants104620
+Node: Macro and text direction105035
+Node: Insert and tweak glyphs105970
+Node: Change to alternate styles107083
+Node: Installation107992
+Node: use-package the straightforward way108248
+Node: Without use-package110633
+Node: Autoloading?112215
+Node: Related packages113100
+Node: Emacs113281
+Node: Non Emacs116643
+Node: Author contributors118555
+Node: License120666
 
 End Tag Table
 

@@ -107,8 +107,7 @@ recover their previous values."
       (hydra-keyboard-quit)) ;; clear any left-over from previous bench
   (if (fboundp 'transient-quit-all)
       (transient-quit-all))  ;; clear any left-over from previous bench
-  (if (functionp 'uniline--char-to-4quadb)
-      (setq uniline--which-quadrant (uniline--char-to-4quadb ?▘)))
+  (setq uniline--which-quadrant (gethash ?▘ uniline--char-to-4quadb1))
   (uniline-set-brush-1)
   (uniline-set-brush-0dots)
   (let ((old-settings (uniline-bench-record-settings)))

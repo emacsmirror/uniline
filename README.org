@@ -2269,6 +2269,21 @@ The tilde =~= character is not always easy to type under
 MacOs. Sometimes it is bound to =M-n=, but not always.
 See [[#keyboard-bindings][Keyboard bindings]] for how to bind tilde =~= and other keys.
 
+The default monospaced font on MacOS used to be =Menlo=. It was
+superseded by =SF-Mono=. Uniline cannot support those fonts, as their
+licensing is quite restrictive (=SF-Mono= much more than =Menlo=).
+
+You may still use them on your own. Just customize the =default-face= or
+type something like:
+
+#+begin_src elisp
+(set-frame-font "Menlo")
+#+end_src
+
+=Menlo= supports the Unicode characters used by Uniline. Although the
+blocks-characters appear disconnected from one another, even with
+=line-spacing= set to =nil=.
+
 ** Compatibility with ASCIIFlow
 :PROPERTIES:
 :CUSTOM_ID: compatibility-with-asciiflow
