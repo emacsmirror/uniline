@@ -1451,6 +1451,32 @@ This =10000= steps limit is customizable. Type:
 M-x customize-variable uniline-contour-max-steps
 #+end_example
 
+The contour algorithm works nicely with 2.5D brushes. An external
+contour appears etched out, while an internal contour appears as a
+hole. Example:
+
+[[file:images/contour-etched-in-out.png]]
+
+#+begin_example
+                             ╭────────────╮
+   ........E...              │........E...║
+   ............              │............║
+   ....    ....              │....╔══╕....╙──╮
+   ...I    .......   ╺━━━━▶  │...I║  │.......║
+   ....      .....           │....║  ╰═╕.....║
+   ....      .....           │....╙────╯.....║
+   ...............           │...............║
+                             ╰═══════════════╝
+#+end_example
+
+- The external contour was achieved by putting the cursor on "E" and typing =INS c=.
+- The internal one with the cursor on "I" and also typing =INS c=.
+
+This works because the contour algorithm follows the shape clockwise
+for an external path, and anti-clockwise for an internal one. There is
+a single algorithm, which goes forward by keeping its right hand
+touching the wall.
+
 ** Flood-fill
 :PROPERTIES:
 :CUSTOM_ID: flood-fill
