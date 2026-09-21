@@ -431,7 +431,8 @@ for later menu invocation in the same Uniline session."
    ["Copy-paste"
     ("c" "Copy" uniline-copy-rectangle :transient nil)
     ("k" "Kill" uniline-kill-rectangle :transient nil)
-    ("y" "Yank" uniline-yank-rectangle :transient t)]
+    ("y" "Yank" uniline-yank-rectangle :transient t)
+    ("a" "Abbrev" uniline-abbrev-add   :transient nil)]
    ["Brush"
     ("-"   "╭─╯" uniline-set-brush-1          :transient t)
     ("+"   "┏━┛" uniline-set-brush-2          :transient t)
@@ -439,7 +440,6 @@ for later menu invocation in the same Uniline session."
     ("#"   "▄▄▟" uniline-set-brush-block      :transient t)
     ("~"   "┄┄┄" uniline-set-brush-dot-toggle :transient t)]
    ["brush"
-    ("<return>" "none"  uniline-set-brush-nil     :transient t)
     ("<delete>" "erase" uniline-set-brush-0       :transient t)
     ("b"        "other" uniline-transient-brushes :transient t)]
    ["Misc"
@@ -447,7 +447,7 @@ for later menu invocation in the same Uniline session."
     ("f"        "Choose font" uniline-transient-fonts)
     ;;("C-x C-x" "Exchg point-mark" rectangle-exchange-point-and-mark :transient t)
     ("C-t"      "Togg hints"  uniline-toggle-transient-hints-suffix)
-    ("<return>" "Exit"        uniline--rect-quit)]
+    ("<return>" "Exit"        uniline--rect-quit :transient nil)]
    ]
   (interactive)
   (rectangle-mark-mode 1)

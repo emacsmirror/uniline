@@ -30,22 +30,9 @@
 :CUSTOM_ID: new
 :END:
 
-Additional brushes are available. They give a 2.5 dimensions aspect to
-boxes. (More that the 2 dimensions of a flat paper and less than our 3
-dimensions world).
-
-#+begin_example
- ╭─────╮    ╭────────╮   ╭───────╮
- │  a  ▐  ╭▷┤ with   ║   │shadows▐
- │ box ▐──╯ ╰════╤═══╝   ╰▄▄▄▄▄▄▄▟
- ╰▄▄▄▄▄▟         ╰──────▷────╯
-#+end_example
-
-2.5 D brushes are still experimental and waiting for user
-feedback. They are available through the Hydra & Transient
-interfaces. Just type =INS b= to bring a menu of available brushes.
-
-See [[#the-25-dimensions-brushes]]
+Uniline is now connected to the =abbrev= standard Emacs abbreviation
+system. This enables permanently storing small diagrams for latter
+use. See [[#abbrev][Abbrev]].
 
 * Table of Contents
 :PROPERTIES:
@@ -97,6 +84,11 @@ See [[#the-25-dimensions-brushes]]
   - [[#tracing-a-contour][Tracing a contour]]
   - [[#flood-fill][Flood-fill]]
 - [[#macros][Macros]]
+- [[#abbrev][Abbrev]]
+  - [[#create-an-abbrev][Create an abbrev]]
+  - [[#insert-an-abbrev][Insert an abbrev]]
+  - [[#manage-abbrevs][Manage abbrevs]]
+  - [[#library-of-abbrevs][Library of abbrevs]]
 - [[#which-fonts][Which fonts?]]
   - [[#recommended-fonts][Recommended fonts]]
   - [[#use-case---mixing-fonts][Use case - mixing fonts]]
@@ -126,6 +118,7 @@ See [[#the-25-dimensions-brushes]]
   - [[#compatibility-with-artist-mode][Compatibility with Artist-mode]]
   - [[#compatibility-with-whitespace-mode][Compatibility with Whitespace-mode]]
   - [[#compatibility-with-org-mode][Compatibility with Org Mode]]
+  - [[#compatibility-with-abbrev][Compatibility with abbrev]]
   - [[#org-mode-and-latex][Org Mode and LaTex]]
   - [[#what-about-t-tabs][What about \t tabs?]]
   - [[#what-about-l-page-separation][What about ^L page separation?]]
@@ -1594,6 +1587,74 @@ call a macro in 4 directions, closing a square:
 
 #+end_example
 
+* Abbrev
+:PROPERTIES:
+:CUSTOM_ID: abbrev
+:END:
+The =abbrev= standard Emacs system stores snippets for latter use.  Give
+a snippet a name. When this exact name appears in a buffer, it is
+automatically replaced by the snippet. This happens by typing a blank
+following the name under the abbrev minor mode, or typing =C-x '=.
+
+A Uniline-abbrev-snippet is a rectangle. (This contrast with usual
+abbrevs, which are contiguous snippets of text, maybe on several
+lines). An abbrev rectangle may be overlapped anywhere in the Uniline
+buffer, pretty much like yanking a rectangle.
+
+** Create an abbrev
+:PROPERTIES:
+:CUSTOM_ID: create-an-abbrev
+:END:
+
+Under =uniline-mode= create an abbrev:
+- select a rectangular region,
+- type =<insert> a=,
+- answer to the prompt for a new name.
+
+That's all.
+
+** Insert an abbrev
+:PROPERTIES:
+:CUSTOM_ID: insert-an-abbrev
+:END:
+
+To insert a previously stored abbrev:
+- type the name of the abbreviation in the buffer under =uniline-mode=,
+- either type =C-x '=,
+- or a space if =abbrev-mode= is active.
+- the name is replaced by the stored rectangular diagram.
+
+Uniline abbreviations are kept under the =uniline-abbrev-table=. They
+are available only under the Uniline minor mode.
+
+** Manage abbrevs
+:PROPERTIES:
+:CUSTOM_ID: manage-abbrevs
+:END:
+
+To see, change, edit, and manage the abbreviations:
+- type =M-x list-abbrevs=,
+- look for the =(uniline-abbrev-table)=,
+- edit at will,
+- permanently store by typing =C-x C-s=.
+
+** Library of abbrevs
+:PROPERTIES:
+:CUSTOM_ID: library-of-abbrevs
+:END:
+
+As mentioned by a user (see
+https://www.reddit.com/r/emacs/comments/1vpvld9/uniline_goes_25_dimensions/),
+a library of usual diagram elements is handy. They can be
+representations of a valve, a motor, a vu-meter, a switch, a resistor,
+a cat, a hat, or whatever makes sense for a particular kind of
+diagram.
+
+It is easy to create your own. If you would like to contribute some
+specialized library (electric engineering or process orchestration for
+instance), you are welcome. There is not yet a repository for such a
+library. But this does not stop from starting one.
+
 * Which fonts?
 :PROPERTIES:
 :CUSTOM_ID: which-fonts
@@ -2002,13 +2063,17 @@ Uniline defines (locally and while in =uniline-mode=).
 Defaults to =10000=.
 To avoid an infinite loop in some rare cases.
 
+For huge contours, it is always possible to launch the contour command
+=<insert> c= once again, from where the last command stopped.
+
 Variable =uniline-contour-max-steps=.
 
 ** Cursor type
 :PROPERTIES:
 :CUSTOM_ID: cursor-type
 :END:
-Hollow by default, so that what is under the cursor remains visible.
+The cursor is hollow by default, so that what is under the cursor
+remains visible.
 
 There is the option to leave the cursor as it is.
 
@@ -2031,7 +2096,7 @@ Variable =uniline-hint-style=.
 :END:
 Default is "on". Turn it "off" for less distraction.
 
-Even when turned of, the welcome message can still be displayed by
+Even when turned off, the welcome message can still be displayed by
 pressing =C-h TAB=.
 
 Variable =uniline-show-welcome-message=.
@@ -2125,7 +2190,7 @@ visually more pleasant with this setting. They write this in their
 Note: defining the =no-line-spacing= function may be avoided using a
 =lambda=. But the =add-hook= function recommends a =defun=.
 
-Look here [[#use-case-mixing-fonts][Use case - mixing fonts]] for a more advanced use of hooks,
+Look here [[#use-case---mixing-fonts][Use case - mixing fonts]] for a more advanced use of hooks,
 suggested by a Uniline user.
 
 * How Uniline behaves with its environment?
@@ -2303,6 +2368,51 @@ activated.
   ╰───────╯
 #+end_src
 #+end_example
+↓
+** Compatibility with abbrev
+:PROPERTIES:
+:CUSTOM_ID: compatibility-with-abbrev
+:END:
+With the builtin =abbrev= package, type a word, then =C-x '=, and the word
+is replaced by its associated text.
+
+Of course, you can use =abbrev= (or any other similar package like
+=yasnippet= or =tempel=) under Uniline.
+
+Now Uniline adds the ability to expand a word into a rectangular
+text. This is achieve through the =uniline-abbrev-hook= function
+associated to each abbreviation created by Uniline. See [[#abbrev][Abbrev]].
+
+If you display all the abbreviations with the =M-x list-abbrevs=
+command, you will see something like:
+
+[[file:images/abbrev-editting.png]]
+
+#+begin_example
+
+   ╭────the name of the abbreviation
+   │     ╭─the number of times this abbreviation has been invoked so far
+   │     │   ╭╴the rectangle to insert
+   │     │   ╰─────────╮
+   │     ╰───────╮     │
+╭──▼─────────────▼─────▼───────────────────────────────────────────╮
+│ "sc"           17    "                                           │
+│ ╭─╮                                                              │
+│ │●╯                                                              │
+│ ╰─╴"                                         uniline-abbrev-hook │
+╰────────────────────────────────────────────────────────▲─────────╯
+                                                         │
+  the hook to make the insertion rectangular╶────────────╯
+
+#+end_example
+
+You can edit that: the name of the abbrev, or the rectangle to insert.
+Then save the result for future sessions with =C-x C-s=.  Just keep the
+Uniline hook. It was set by Uniline when creating the abbrev with
+=<insert> a=.
+
+The rectangle begins with a newline which will be ignored, but which
+makes the rectangle readable and editable.
 
 ** Org Mode and LaTex
 :PROPERTIES:

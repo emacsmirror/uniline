@@ -407,8 +407,8 @@
 │_<left>_  ←││_R_     trace outer││_k_ kill││_=_ ╔═╝  _#_ ▄▄▟││_f_   choose font│
 │_<up>_    ↑││_C-r_   ovewr inner││_y_ yank││_~_ ┄┄┄  _b_ 3D ││_C-t_ short hints│
 │_<down>_  ↓││_C-S-R_ ovewr outer││_i_ fill││_<delete>_ DEL^^││_?_   info       │
-╰^─────^────╯╰^────^─────────────╯╰^^──────╯╰^^─────────^^───╯│_<return>_ exit  │
- ^     ^      ^    ^               ^^        ^^         ^^    ╰^───^────────────╯"
+╰^─────^────╯╰^────^─────────────╯│_a_ abbr│╰^^─────────^^───╯│_<return>_ exit  │
+ ^     ^      ^    ^              ╰^^──────╯ ^^         ^^    ╰^───^────────────╯"
       ("<right>" uniline-move-rect-ri→)
       ("<left>"  uniline-move-rect-lf←)
       ("<up>"    uniline-move-rect-up↑)
@@ -423,6 +423,7 @@
       ("c"   uniline-copy-rectangle :exit t)
       ("k"   uniline-kill-rectangle :exit t)
       ("y"   uniline-yank-rectangle)
+      ("a"   uniline-abbrev-add)
 
       ("<delete>"       uniline-set-brush-0)
       ("<deletechar>"   uniline-set-brush-0)

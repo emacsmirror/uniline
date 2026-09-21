@@ -3973,6 +3973,51 @@ This includes plain and dashed lines (e.g. ┻ to ╩, or ┄ to ═)."
 It is available on ELPA.
 Or use the '0 standard' style transformer instead.")))
 
+;;;╭──────╮
+;;;│Abbrev│
+;;;╰──────╯
+
+(defvar uniline-abbrev-table)
+
+(unless (and (boundp 'uniline-abbrev-table) uniline-abbrev-table)
+  (define-abbrev-table 'uniline-abbrev-table ()))
+
+;; Register Uniline minor mode as having it own abbreviations
+
+(add-to-list
+ 'abbrev-minor-mode-table-alist
+ (cons 'uniline-mode uniline-abbrev-table))
+
+(defun uniline-abbrev-hook ()
+  "Hook passed to the `abbrev' system to insert a rectangle."
+  (interactive)
+  (put 'uniline-abbrev-hook 'no-self-insert t)
+  (setq killed-rectangle
+        (cdr
+         (split-string
+          (buffer-substring last-abbrev-location (point))
+          "\n")))
+  (delete-region last-abbrev-location (point))
+  (save-excursion (insert (make-string (length last-abbrev-text) ? )))
+  (set-mark (point))
+  (uniline-yank-rectangle)
+  (deactivate-mark))
+
+(defvar uniline-abbrev-table)
+
+(defun uniline-abbrev-add ()
+  "Add a new `abbrev' whose expansion is the currently selected rectangle."
+  (interactive)
+  (uniline-copy-rectangle)
+  (define-abbrev uniline-abbrev-table
+    (read-string "Name of the abbreviation: ")
+    (mapconcat
+     #'identity
+     (cons "" killed-rectangle)
+     "\n")
+    'uniline-abbrev-hook)
+  (deactivate-mark))
+
 ;;;╭───────────────────────────╮
 ;;;│Common to Hydra & Transient│
 ;;;╰───────────────────────────╯
@@ -4935,7 +4980,9 @@ Its value is ?h or ?t")
      ["Trace rectangle around selection"     uniline-draw-outer-rectangle      :keys "INS R"  ]
      ["Overwrite rectangle inside selection" uniline-overwrite-inner-rectangle :keys "INS C-r"]
      ["Overwrite rectangle around selection" uniline-overwrite-outer-rectangle :keys "INS C-R"]
-     ["Fill"                                 uniline-fill-rectangle            :keys "INS i"  ])
+     ["Fill"                                 uniline-fill-rectangle            :keys "INS i"  ]
+     "----"
+     ["Store selection as an abbreviation"   uniline-abbrev-add                :keys "INS a"  ])
     ("Alternate styles" :active (region-active-p)
      ["─ thin lines"          uniline-change-style-thin     :keys "INS s -"]
      ["━ thick lines"         uniline-change-style-thick    :keys "INS s +"]

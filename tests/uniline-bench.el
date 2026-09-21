@@ -184,7 +184,9 @@ Do not call it directly."
   (insert "\"\n\n\"\\\n")
   (insert-buffer-substring "*uniline-interactive*")
   (insert "\"\n")
-  (insert (format "%s" (uniline-bench-plist-non-standard-settings)))
+  (cl-loop
+   for el in (uniline-bench-plist-non-standard-settings)
+   do (insert (format "'%s " el)))
   (insert ")\n")
   (lisp-mode))
 
